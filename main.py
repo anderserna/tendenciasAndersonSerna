@@ -10,7 +10,7 @@ def menu_principal():
     administrativos = []
 
     while True:
-        print("Clinica")
+        print("Sistema Hospitalario")
         print("1. Recursos Humanos")
         print("2. Personal Administrativo")
         print("3. Enfermera")
@@ -27,7 +27,7 @@ def menu_principal():
         elif opcion == "4":
             menu_medico()
         elif opcion == "5":
-            print("¡Ten un feliz dia, hasta luego!")
+            print("¡Hasta luego!")
             break
         else:
             print("Opción inválida. Por favor, elija una opción válida.")
