@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Información del Paciente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000; /* Color negro */
+        }
+
+        form {
+            max-width: 800px; /* Ajusta el ancho del formulario */
+            background-color: #87CEEB; /* Celeste */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .column {
+            width: 31%; /* Divide el ancho en tres columnas con margen entre ellas */
+            margin-bottom: 15px; /* Espaciado entre columnas */
+        }
+
+        label {
+            font-weight: bold;
+            display: inline-block;
+            width: 100%; /* Ajusta el ancho de las etiquetas al 100% de la columna */
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #fff; /* Color blanco */
+            color: #000; /* Color negro */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Información del Paciente</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="column">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="cedula">Cédula:</label>
+            <input type="number" id="cedula" name="cedula" pattern="[0-9]+" required>
+            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+            <label for="genero">Género:</label>
+            <select id="genero" name="genero" required>
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="otro">Otro</option>
+            </select>
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required>
+        </div>
+        <div class="column">
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]+" required>
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+            <label for="nombre_contacto_emergencia">Nombre del Contacto de Emergencia:</label>
+            <input type="text" id="nombre_contacto_emergencia" name="nombre_contacto_emergencia" required>
+            <label for="relacion_paciente">Relación con el Paciente:</label>
+            <input type="text" id="relacion_paciente" name="relacion_paciente" required>
+        </div>
+        <div class="column">
+            <label for="numero_emergencia">Número de Emergencia:</label>
+            <input type="tel" id="numero_emergencia" name="numero_emergencia" pattern="[0-9]+" required>
+            <label for="nombre_compania_seguros">Nombre de la Compañía de Seguros:</label>
+            <input type="text" id="nombre_compania_seguros" name="nombre_compania_seguros" required>
+            <label for="nombre_compania_seguros">Numero de poliza:</label>
+            <input type="text" id="numero_poliza" name="numero_poliza" pattern="[0-9]+" required>
+            <label for="estado_poliza">Estado de la Póliza:</label>
+            <select id="estado_poliza" name="estado_poliza" required>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+
+            <!-- Campos existentes ... -->
+            <label for="cita_medica">¿Desea programar una cita médica?</label>
+            <select id="cita_medica" name="cita_medica" onchange="toggleFechaHora(this.value)">
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+            <div id="fecha_hora" class="hidden">
+                <label for="fecha_cita">Fecha de la cita:</label>
+                <input type="date" id="fecha_cita" name="fecha_cita">
+                <label for="hora_cita">Hora de la cita:</label>
+                <input type="time" id="hora_cita" name="hora_cita">
+            </div>
+        </div>
+        <!-- Agrega aquí los campos faltantes -->
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+
+</html>

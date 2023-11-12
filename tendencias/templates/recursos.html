@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ingreso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            text-align: center;
+            color: #000; /* Color negro */
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #87CEEB; /* Celeste */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        select,
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #fff; /* Color blanco */
+            color: #000; /* Color negro */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Recursos Humanos</h2>
+    <form id="miFormulario" method="post">
+        {% csrf_token %}
+
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="cedula">Cedula:</label>
+        <input type="text" id="cedula" name="cedula" required oninput="validarNumero(this)">
+
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" required oninput="validarNumero(this)">
+
+        <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required>
+
+        <label for="licencia">Licencia:</label>
+        <input type="text" id="licencia" name="licencia" required>
+
+        <label for="rol">Rol:</label>
+        <select id="rol" name="rol" required>
+            <option value="Recursos humanos">Recursos Humanos</option>
+            <option value="Personal administrativo">Personal Administrativo</option>
+            <option value="Enfermera">Enfermera</option>
+            <option value="Medicos">Medicos</option>
+        </select>
+
+        <input type="submit" value="Enviar" onclick="mostrarAlerta()">
+    </form>
+
+    <script>
+        function mostrarAlerta() {
+            var formulario = document.getElementById("miFormulario");
+            if (formulario.checkValidity()) {
+                alert("Datos guardados");
+            }
+        }
+
+        function validarNumero(input) {
+            input.value = input.value.replace(/[^0-9]/g, '');
+
+            if (input.value === '') {
+                alert("Ingrese solo números en este campo.");
+            }
+        }
+    </script>
+</body>
+
+</html>
